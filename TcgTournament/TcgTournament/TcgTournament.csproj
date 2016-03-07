@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlers\LaunchingControler.cs" />
+    <Compile Include="Controlers\OnRoundControler.cs" />
     <Compile Include="Controlers\SuperControler.cs" />
     <Compile Include="Controlers\TournamentControler.cs" />
     <Compile Include="Form1.cs">

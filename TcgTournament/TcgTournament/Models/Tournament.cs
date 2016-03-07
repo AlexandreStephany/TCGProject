@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace TcgTournament.Models
 {
@@ -10,15 +11,36 @@ namespace TcgTournament.Models
     {
         private Dictionary<int, List<Match>> matchesByRound;
         private List<Player> participating;
+        private Timer chrono;
         public Tournament()
         {
             participating = new List<Player>();
             matchesByRound = new Dictionary<int, List<Match>>();
         }
-        public Tournament(List<Player> players)
+
+        internal void PermutatePlayers(Player firstP, Player secondP)
+        {
+            List<Match> CurrentMatches = new List<Match>();
+            this.matchesByRound.TryGetValue(this.matchesByRound.Count - 1, out CurrentMatches);
+            
+        }
+
+        internal void StartCountdown()
+        {
+            this.chrono.Start();
+        }
+
+        public Tournament(List<Player> players,Timer timer)
         {
             participating = players;
             matchesByRound = new Dictionary<int, List<Match>>();
+            chrono = timer;
+            
+        }
+        public Timer Chrono
+        {
+            get { return this.chrono; }
+            set { this.chrono = value; }
         }
         public Dictionary<int, List<Match>> MatchesByRound
         {
