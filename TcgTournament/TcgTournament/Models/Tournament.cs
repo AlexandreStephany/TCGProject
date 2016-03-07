@@ -20,8 +20,10 @@ namespace TcgTournament.Models
             participating = players;
             matchesByRound = new Dictionary<int, List<Match>>();
         }
-        public Dictionary<int,List<Match>> MatchesByRound {
+        public Dictionary<int, List<Match>> MatchesByRound
+        {
             get { return this.matchesByRound; }
-            set { this.matchesByRound=value; }
+            set { this.matchesByRound = value; }
+        }
     }
 }
