@@ -25,5 +25,11 @@ namespace TcgTournament.Models
             get { return this.matchesByRound; }
             set { this.matchesByRound = value; }
         }
+        public List<Player> Participating
+        {
+            get { return this.participating; }
+            set { this.participating = value;}
+        }
+
     }
 }

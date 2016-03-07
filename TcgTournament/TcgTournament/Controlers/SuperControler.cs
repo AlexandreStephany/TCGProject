@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TcgTournament.Models;
 
 namespace TcgTournament.Controlers
 {
-    class SuperControler
+    public class SuperControler
     {
+        private Tournament tournament;
+        public SuperControler(Tournament t)
+        {
+            tournament = t;
+        }
+        public Tournament Tournament
+        {
+            get { return this.tournament; }
+            set { this.tournament = value; }
+        }
+
     }
 }
