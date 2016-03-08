@@ -21,6 +21,11 @@ namespace TcgTournament.Models
             this.Chrono.Elapsed += ActivateAlarm;
         }
 
+        internal int NumberOfPlayer()
+        {
+            return this.Participating.Count;
+        }
+
         internal int NumberOfMatches()
         {
             return this.MatchesByRound.Count;
