@@ -20,6 +20,18 @@ namespace TcgTournament.Models
             this.Chrono = new Timer();
             this.Chrono.Elapsed += ActivateAlarm;
         }
+
+        internal int NumberOfMatches()
+        {
+            return this.MatchesByRound.Count;
+        }
+
+        public List<Player> SortedPlayers()
+        {
+            this.Participating.Sort();
+            return this.Participating;
+        }
+
         public Tournament(List<Player> players, int timeLaps)
         {
             participating = players;

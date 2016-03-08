@@ -13,7 +13,16 @@ namespace TcgTournament.Controlers
         {}
         public void GenerateNextMatches()
         {
+            //if(Tournament.)
             //If you finished it Miwaku here's were you could do it ;)
+        }
+        public void CompleteMatches()
+        {
+            
+        }
+        public void LaunchRound()
+        {
+            this.Tournament.StartCountdown();
         }
     }
 }
