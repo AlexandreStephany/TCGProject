@@ -25,6 +25,7 @@ namespace TcgTournament.Controlers
             List<Player> playersByRanking = Tournament.SortedPlayers();
             List<Match> CurrentMatches = new List<Match>();
             Player tempPlayer;
+            Dictionary<Player, List<Player>>tempPlayerFought=playerFought;
             if (Tournament.NumberOfPlayer() % 2 == 1)
             {
                 do
@@ -32,19 +33,29 @@ namespace TcgTournament.Controlers
                     tempPlayer = playersByRanking[RandNumber.Next(Tournament.NumberOfPlayer() - 1)];
                 } while (playerFought[tempPlayer].Contains(null));
                 CurrentMatches.Add(new Match(tempPlayer, null));
-                playerFought[tempPlayer].Add(null);
+                tempPlayerFought[tempPlayer].Add(null);
                 playersByRanking.Remove(tempPlayer);
             }
-            while (playersByRanking.Count != 0)
+            bool oneMatchIsNotValid = false;
+            List<Match> tempCurrentMatches = new List<Match>();
+            do
             {
-                tempPlayer = GetNextPlayer(playersByRanking[0], playersByRanking);
-                CurrentMatches.Add(new Match(playersByRanking[0],tempPlayer));
-                playerFought[tempPlayer].Add(playersByRanking[0]);
-                playerFought[playersByRanking[0]].Add(tempPlayer);
-                playersByRanking.Remove(tempPlayer);
-                playersByRanking.Remove(playersByRanking[0]);
-            }
-            //If you finished it Miwaku here's were you could do it ;)
+                tempCurrentMatches = CurrentMatches;
+                List<Player> tempPlayersByRanking = playersByRanking;   
+                while (tempPlayersByRanking.Count != 0)
+                {
+                    tempPlayer = GetNextPlayer(tempPlayersByRanking[0], tempPlayersByRanking);
+                    if (tempPlayer == null) oneMatchIsNotValid = true;
+                    tempCurrentMatches.Add(new Match(tempPlayersByRanking[0], tempPlayer));
+                    tempPlayerFought[tempPlayer].Add(tempPlayersByRanking[0]);
+                    tempPlayerFought[tempPlayersByRanking[0]].Add(tempPlayer);
+                    tempPlayersByRanking.Remove(tempPlayer);
+                    tempPlayersByRanking.Remove(tempPlayersByRanking[0]);
+                }
+
+            }while(oneMatchIsNotValid);
+            this.playerFought = tempPlayerFought;
+            this.Tournament.MatchesByRound.Add(this.Tournament.NumberOfMatches(), tempCurrentMatches);
         }
 
         private Player GetNextPlayer(Player player, List<Player> playersByRanking)
