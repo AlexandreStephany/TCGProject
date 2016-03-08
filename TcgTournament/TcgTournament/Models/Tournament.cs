@@ -39,26 +39,30 @@ namespace TcgTournament.Models
                 Match firstMatch = CurrentMatches[i];
                 if(firstMatch.PlayerOnThisMatch(firstP))
                 {
-                    
-                    for (int j = 0; j < CurrentMatches.Count && !permutationMade; j++)
-                    {
-                        Match secondMatch = CurrentMatches[j];
-                        if (secondMatch.PlayerOnThisMatch(secondP))
-                        {
-
-                            firstMatch.ChangePlayer(firstP, secondP);
-                            secondMatch.ChangePlayer(secondP,firstP);
-                        }
-
-                    }
-
-                    }else if(firstMatch.PlayerOnThisMatch(secondP)){
-
+                    permutationMade = DoPermutation(CurrentMatches, firstMatch, firstP, secondP);
                 }
-            }
-            
+                else if(firstMatch.PlayerOnThisMatch(secondP)){
+                    permutationMade = DoPermutation(CurrentMatches, firstMatch, secondP, firstP);                     
+                }
+            }            
         }
-        
+
+        public bool DoPermutation(List<Match> currentMatches, Match firstMatch, Player firstP, Player secondP)
+        {
+            bool permutationMade = false;
+            for (int j = 0; j < currentMatches.Count && !permutationMade; j++)
+            {
+                Match secondMatch = currentMatches[j];
+                if (secondMatch.PlayerOnThisMatch(firstP))
+                {
+                    secondMatch.ChangePlayer(firstP, secondP);
+                    firstMatch.ChangePlayer(secondP, firstP);
+                    permutationMade = true;
+                }
+
+            }
+            return permutationMade;
+        }
 
         internal void StartCountdown()
         {
