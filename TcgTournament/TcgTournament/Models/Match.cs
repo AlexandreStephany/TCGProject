@@ -78,7 +78,8 @@ namespace TcgTournament.Models
 
         internal void ChangePlayer(Player secondP, Player firstP)
         {
-            throw new NotImplementedException();
+            this.Result.Remove(secondP);
+            this.Result.Add(firstP,0);
         }
     }
 
