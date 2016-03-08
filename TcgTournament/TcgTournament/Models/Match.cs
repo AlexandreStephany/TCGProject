@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,16 @@ namespace TcgTournament.Models
             }
             
         }
+        public bool PlayerOnThisMatch(Player player)
+        {
+            if (this.Result.ContainsKey(player))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
 
         public Player GetLoser()
         {
@@ -49,6 +60,25 @@ namespace TcgTournament.Models
                 return secondPlayer.Key;
             }
 
+        }
+
+        internal int getPlayerIndex(Player player)
+        {
+            Player[] matchPlayers = new Player[2];
+            this.Result.Keys.CopyTo(matchPlayers,0);
+            if (player.Equals(matchPlayers[0]))
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        internal void ChangePlayer(Player secondP, Player firstP)
+        {
+            throw new NotImplementedException();
         }
     }
 
