@@ -13,9 +13,31 @@ namespace TcgTournament.EntityFramework
     {
         public EFDataContext(string connexionString) : base(connexionString) { }
 
-        public DbSet<Match>Matches;
-        public DbSet<Player> Players;
-        public DbSet<Tournament> Tournaments;
+        public DbSet<DbMatch>Matches;
+        public DbSet<DbPlayer> Players;
+        public DbSet<DbTournament> Tournaments;
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DbMatch>().ToTable("Matches");
+            modelBuilder.Entity<DbMatch>().HasKey(m => m.IdMatch);
+            modelBuilder.Entity<DbMatch>().HasOptional(m => m.Winner);
+            modelBuilder.Entity<DbMatch>().HasOptional(m => m.Loser);
+            modelBuilder.Entity<DbMatch>().HasRequired(m => m.Tournament);
+
+
+            modelBuilder.Entity<DbPlayer>().ToTable("Players");
+            modelBuilder.Entity<DbPlayer>().HasKey(p=>p.Pseudo);
+
+            modelBuilder.Entity<DbTournament>().ToTable("Tournaments");
+            modelBuilder.Entity<DbTournament>().HasKey(t => t.IdTournament);
+
+            modelBuilder.Entity<DbTournament>().HasMany(t => t.Players).WithMany(p => p.Tournaments).Map(m => {
+                m.ToTable("TournamantParticipation");
+                m.MapLeftKey("Id Tournament");
+                m.MapRightKey("Pseudo");
+            });
+        }
 
     }
 }

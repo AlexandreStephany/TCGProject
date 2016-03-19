@@ -59,9 +59,9 @@
     <Compile Include="Controlers\SuperControler.cs" />
     <Compile Include="Controlers\TournamentControler.cs" />
     <Compile Include="EntityFramework\EFDataContext.cs" />
-    <Compile Include="EntityFramework\EfModels\Match.cs" />
-    <Compile Include="EntityFramework\EfModels\Player.cs" />
-    <Compile Include="EntityFramework\EfModels\Tournament.cs" />
+    <Compile Include="EntityFramework\EfModels\DbMatch.cs" />
+    <Compile Include="EntityFramework\EfModels\DbPlayer.cs" />
+    <Compile Include="EntityFramework\EfModels\DbTournament.cs" />
     <Compile Include="EntityFramework\EFTournamentMapper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

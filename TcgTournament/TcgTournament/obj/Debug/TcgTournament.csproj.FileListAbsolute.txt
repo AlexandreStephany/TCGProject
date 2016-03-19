@@ -7,3 +7,6 @@ C:\Users\Alex\Documents\Git\TCG\TcgTournament\TcgTournament\bin\Debug\TcgTournam
 C:\Users\Alex\Documents\Git\TCG\TcgTournament\TcgTournament\bin\Debug\TcgTournament.pdb
 C:\Users\Alex\Documents\Git\TCG\TcgTournament\TcgTournament\obj\Debug\TcgTournament.exe
 C:\Users\Alex\Documents\Git\TCG\TcgTournament\TcgTournament\obj\Debug\TcgTournament.pdb
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\TcgTournament.exe.config
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.exe
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.pdb
