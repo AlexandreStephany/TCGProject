@@ -7,22 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcgTournament", "TcgTournam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTcgDataBase", "TestTcgDataBase\TestTcgDataBase.csproj", "{20B5A37A-E097-48B1-84E8-A998B49FE2CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Views", "Views", "{92DF345A-86B3-4F5B-89BE-090CC0275BF5}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.Designer.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.Designer.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.resx = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Create.resx
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.Designer.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.Designer.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.resx = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Players.resx
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.Designer.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.Designer.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.resx = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\PlayerStatistics.resx
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.Designer.cs = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.Designer.cs
-		C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.resx = C:\Users\Alex\Desktop\TCGProject\TCGProject\TcgTournament\TcgTournament\Tournament.resx
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

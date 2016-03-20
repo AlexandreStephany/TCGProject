@@ -55,6 +55,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\Create.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Create.designer.cs">
+      <DependentUpon>Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Players.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Players.designer.cs">
+      <DependentUpon>Players.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PlayerStatistics.designer.cs">
+      <DependentUpon>PlayerStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tournament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Tournament.designer.cs">
+      <DependentUpon>Tournament.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Create.resx">
+      <DependentUpon>Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Players.resx">
+      <DependentUpon>Players.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PlayerStatistics.resx">
+      <DependentUpon>PlayerStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Tournament.resx">
+      <DependentUpon>Tournament.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Controlers\LaunchingControler.cs" />
     <Compile Include="Controlers\SuperControler.cs" />
     <Compile Include="Controlers\TournamentControler.cs" />
