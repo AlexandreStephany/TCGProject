@@ -16,9 +16,9 @@ namespace TcgTournament
         [STAThread]
         static void Main()
         {
-            Tournament tournament = new Tournament();
-            LaunchingControler launcherControler = new LaunchingControler(tournament);
-            TournamentControler tournamentControler = new TournamentControler(tournament);
+           // Tournament tournament = new Tournament();
+           // LaunchingControler launcherControler = new LaunchingControler(tournament);
+           // TournamentControler tournamentControler = new TournamentControler(tournament);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

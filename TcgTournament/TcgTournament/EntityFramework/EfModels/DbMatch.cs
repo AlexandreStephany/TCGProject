@@ -94,12 +94,14 @@ namespace TcgTournament.EntityFramework.EfModels
             }
         }
 
-        public DbMatch(DbTournament idTour, DbPlayer win, DbPlayer los)
+        public DbMatch(DbTournament idTour, DbPlayer win, DbPlayer los,int winpoint,int lospoint)
         {
             IdMatch = 0;
             tournament = idTour;
             Winner = win;
             Loser = los;
+            WinPoints = winpoint;
+            LosePoints = lospoint;
         }
     }
 }

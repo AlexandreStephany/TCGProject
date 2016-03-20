@@ -13,9 +13,9 @@ namespace TcgTournament.EntityFramework
     {
         public EFDataContext(string connexionString) : base(connexionString) { }
 
-        public DbSet<DbMatch>Matches;
-        public DbSet<DbPlayer> Players;
-        public DbSet<DbTournament> Tournaments;
+        public DbSet<DbMatch> Matches { get; set; }
+        public DbSet<DbPlayer> Players { get; set; }
+        public DbSet<DbTournament> Tournaments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

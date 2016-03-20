@@ -10,3 +10,12 @@ C:\Users\Alex\Documents\Git\TCG\TcgTournament\TcgTournament\obj\Debug\TcgTournam
 D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\TcgTournament.exe.config
 D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.exe
 D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.pdb
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.csprojResolveAssemblyReference.cache
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.Properties.Resources.resources
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\obj\Debug\TcgTournament.csproj.GenerateResource.Cache
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\TcgTournament.exe
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\TcgTournament.pdb
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\EntityFramework.dll
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\EntityFramework.SqlServer.dll
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\EntityFramework.xml
+D:\Files\Git\TCGProject\TcgTournament\TcgTournament\bin\Debug\EntityFramework.SqlServer.xml
