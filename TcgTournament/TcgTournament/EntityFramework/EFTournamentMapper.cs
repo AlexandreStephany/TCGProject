@@ -46,12 +46,35 @@ namespace TcgTournament.EntityFramework
 
         public List<Player> GetAllPlayers()
         {
-            throw new NotImplementedException();
+            List<Player> allPlayers = new List<Player>();
+            List<DbPlayer> allInDb = contexte.Players.ToList();
+            foreach(DbPlayer player in allInDb)
+            {
+                allPlayers.Add(new Player(player.Pseudo));
+            }
+            return allPlayers;
         }
 
         public int[] GetVictoriesDefeatVS1(Player p1, Player p2)
         {
-            throw new NotImplementedException();
+            int[] vAndD = new int[2];
+            DbPlayer player1 = contexte.Players.First<DbPlayer>(p => p.Pseudo == p1.Username);
+            DbPlayer player2 = contexte.Players.First<DbPlayer>(p => p.Pseudo == p2.Username);
+            List<DbMatch> PlayerMatches = contexte.Matches.Where<DbMatch>(m => (m.Winner == player1 || m.Loser == player1) && (m.Winner == player2 || m.Loser == player2)).ToList();
+
+            foreach (DbMatch match in PlayerMatches)
+            {
+                if (match.Winner == player1)
+                {
+                    vAndD[0]++;
+                }
+                else
+                if (match.Loser == player1)
+                {
+                    vAndD[1]++;
+                }
+            }
+            return vAndD;
         }
 
         public int PossiblePosition(Player p, List<Player> other)
@@ -90,12 +113,26 @@ namespace TcgTournament.EntityFramework
 
         public int[] TotalVictoriesAndDefeat(Player player)
         {
-            throw new NotImplementedException();
+            int[] vAndD = new int[2];
+            DbPlayer currentP = contexte.Players.First<DbPlayer>(p => p.Pseudo == player.Username);
+            List<DbMatch> PlayerMatches = contexte.Matches.Where<DbMatch>(m => m.Winner == currentP || m.Loser == currentP).ToList();
+            foreach(DbMatch match in PlayerMatches)
+            {
+                if (match.Winner == currentP)
+                {
+                    vAndD[0]++; 
+                }else
+                if (match.Loser == currentP)
+                {
+                    vAndD[1]++;
+                }
+            }
+            return vAndD;
         }
 
         public int TournamentParticipated(Player player)
         {
-            throw new NotImplementedException();
+            return contexte.Players.First<DbPlayer>(p=>p.Pseudo==player.Username).Tournaments.Count;
         }
     }
 }
