@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcgTournament", "TcgTournam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTcgDataBase", "TestTcgDataBase\TestTcgDataBase.csproj", "{20B5A37A-E097-48B1-84E8-A998B49FE2CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{D5D275CF-9441-4E46-AB42-135A34ECDFB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{20B5A37A-E097-48B1-84E8-A998B49FE2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20B5A37A-E097-48B1-84E8-A998B49FE2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20B5A37A-E097-48B1-84E8-A998B49FE2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5D275CF-9441-4E46-AB42-135A34ECDFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5D275CF-9441-4E46-AB42-135A34ECDFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5D275CF-9441-4E46-AB42-135A34ECDFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5D275CF-9441-4E46-AB42-135A34ECDFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

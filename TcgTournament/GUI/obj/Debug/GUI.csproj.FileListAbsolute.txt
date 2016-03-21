@@ -1,0 +1,9 @@
+C:\Users\Alexander\project\TCGProject\TcgTournament\GUI\bin\Debug\GUI.dll
+C:\Users\Alexander\project\TCGProject\TcgTournament\GUI\bin\Debug\GUI.pdb
+C:\Users\Alexander\project\TCGProject\TcgTournament\GUI\obj\Debug\GUI.dll
+C:\Users\Alexander\project\TCGProject\TcgTournament\GUI\obj\Debug\GUI.pdb
+C:\Users\Alexander\project\TCGProject\TcgTournament\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Alexander\Desktop\TCGProject-master\GUI\bin\Debug\GUI.dll
+C:\Users\Alexander\Desktop\TCGProject-master\GUI\bin\Debug\GUI.pdb
+C:\Users\Alexander\Desktop\TCGProject-master\GUI\obj\Debug\GUI.dll
+C:\Users\Alexander\Desktop\TCGProject-master\GUI\obj\Debug\GUI.pdb

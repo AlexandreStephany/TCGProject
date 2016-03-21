@@ -73,11 +73,11 @@
     <Compile Include="Views\PlayerStatistics.designer.cs">
       <DependentUpon>PlayerStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tournament.cs">
+    <Compile Include="Views\TournamentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Tournament.designer.cs">
-      <DependentUpon>Tournament.cs</DependentUpon>
+    <Compile Include="Views\TournamentView.designer.cs">
+      <DependentUpon>TournamentView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Views\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
@@ -88,10 +88,9 @@
     <EmbeddedResource Include="Views\PlayerStatistics.resx">
       <DependentUpon>PlayerStatistics.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Tournament.resx">
-      <DependentUpon>Tournament.cs</DependentUpon>
+    <EmbeddedResource Include="Views\TournamentView.resx">
+      <DependentUpon>TournamentView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Controlers\LaunchingControler.cs" />
     <Compile Include="Controlers\SuperControler.cs" />
     <Compile Include="Controlers\TournamentControler.cs" />
     <Compile Include="EntityFramework\EFDataContext.cs" />
@@ -134,7 +133,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GUI\GUI.csproj">
+      <Project>{d5d275cf-9441-4e46-ab42-135a34ecdfb1}</Project>
+      <Name>GUI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

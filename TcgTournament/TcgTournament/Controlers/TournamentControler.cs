@@ -13,24 +13,24 @@ namespace TcgTournament.Controlers
         public TournamentControler(Tournament tournament):base(tournament)
         {
             playerFought = new Dictionary<Player, List<Player>>();
-            for(int i = 0; i < Tournament.NumberOfPlayer(); i++)
+            for(int i = 0; i < ActualTournament.NumberOfPlayer(); i++)
             {
-                playerFought.Add(Tournament.Participating[i], new List<Player>());
+                playerFought.Add(ActualTournament.Participating[i], new List<Player>());
             }
         }
         public void GenerateNextMatches()
         {
             Random RandNumber = new Random();
-            int roundNumber = Tournament.MatchesByRound.Count;
-            List<Player> playersByRanking = Tournament.SortedPlayers();
+            int roundNumber = ActualTournament.MatchesByRound.Count;
+            List<Player> playersByRanking = ActualTournament.SortedPlayers();
             List<Match> CurrentMatches = new List<Match>();
             Player tempPlayer;
             Dictionary<Player, List<Player>>tempPlayerFought=playerFought;
-            if (Tournament.NumberOfPlayer() % 2 == 1)
+            if (ActualTournament.NumberOfPlayer() % 2 == 1)
             {
                 do
                 {
-                    tempPlayer = playersByRanking[RandNumber.Next(Tournament.NumberOfPlayer() - 1)];
+                    tempPlayer = playersByRanking[RandNumber.Next(ActualTournament.NumberOfPlayer() - 1)];
                 } while (playerFought[tempPlayer].Contains(null));
                 CurrentMatches.Add(new Match(tempPlayer, null));
                 tempPlayerFought[tempPlayer].Add(null);
@@ -55,7 +55,7 @@ namespace TcgTournament.Controlers
 
             }while(oneMatchIsNotValid);
             this.playerFought = tempPlayerFought;
-            this.Tournament.MatchesByRound.Add(this.Tournament.NumberOfMatches(), tempCurrentMatches);
+            this.ActualTournament.MatchesByRound.Add(this.ActualTournament.NumberOfMatches(), tempCurrentMatches);
         }
 
         private Player GetNextPlayer(Player player, List<Player> playersByRanking)
@@ -76,7 +76,7 @@ namespace TcgTournament.Controlers
         }
         public void LaunchRound()
         {
-            this.Tournament.StartCountdown();
+            this.ActualTournament.StartCountdown();
         }
     }
 }

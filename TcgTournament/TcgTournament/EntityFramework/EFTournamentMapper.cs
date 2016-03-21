@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Text;
 using TcgTournament.EntityFramework.EfModels;
 using TcgTournament.Models; 
@@ -76,10 +77,67 @@ namespace TcgTournament.EntityFramework
             }
             return vAndD;
         }
-
+        
         public int PossiblePosition(Player p, List<Player> other)
         {
-            throw new NotImplementedException();
+            List<DbPlayer> players = new List<DbPlayer>();
+            players.Add(contexte.Players.First<DbPlayer>(p1 => p1.Pseudo == p.Username));
+            DbPlayer player1 = contexte.Players.First<DbPlayer>(p1 => p1.Pseudo == p.Username);
+            foreach (Player player in other)
+            {
+                players.Add(contexte.Players.First<DbPlayer>(p1 => p1.Pseudo == player.Username));
+            }
+            List<DbTournament> allTournament = contexte.Tournaments.ToList();
+            List<DbTournament> correctTournament = new List<DbTournament>();
+            foreach(DbTournament tour in allTournament)
+            {
+                if (tour.Players.Intersect(players).Count() == players.Count)
+                    correctTournament.Add(tour);
+            }
+            List<DbMatch> allMatches = contexte.Matches.ToList();
+            List<DbMatch> correctMatches = new List<DbMatch>();
+            foreach (DbMatch match in allMatches)
+            {
+                if (correctTournament.Contains(match.Tournament))
+                    correctMatches.Add(match);
+            }
+            List<int> positions = new List<int>();
+            foreach(DbTournament tour in correctTournament)
+            {
+
+                List<DbMatch> tourMatches = correctMatches.Where(m => m.Tournament == tour).ToList();
+                List<int> points = new List<int>();
+                foreach (DbPlayer player in players)                    
+                {
+                    int currentPoints = 0;
+                    foreach (DbMatch match in tourMatches)
+                    {
+                        if (match.Loser == player)
+                            currentPoints += match.LosePoints / 10;
+                        if (match.Winner == player)
+                            currentPoints += match.WinPoints;
+                    }
+                    points.Add(currentPoints);
+                }
+                SortedDictionary<int, DbPlayer> classedPlayers = new SortedDictionary<int, DbPlayer>();
+                for(int i = 0; i < players.Count; i++)
+                {
+                    classedPlayers.Add(points[i], players[i]);
+                }
+                DbPlayer[] classed = new DbPlayer[players.Count];
+                classedPlayers.Values.CopyTo(classed,0);
+                for(int i=0; i< players.Count; i++)
+                {
+                    if (classed[i] == player1) positions.Add(i + 1);
+                }
+            }
+            int result = 0;
+            foreach(int pos in positions)
+            {
+                result += pos;
+            }
+            return result / correctTournament.Count;
+
         }
 
         public void SaveMatch(Match match)

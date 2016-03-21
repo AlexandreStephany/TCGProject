@@ -3,13 +3,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Entity;
 using TcgTournament.EntityFramework;
 using TcgTournament.EntityFramework.EfModels;
+using TcgTournament.Models;
 
 namespace TestTcgDataBase
 {
     [TestClass]
     public class UnitTest1
     {
-        EFDataContext contexte;
+        EFTournamentMapper mapper;
 
        
         [ClassInitialize]
@@ -24,14 +25,15 @@ namespace TestTcgDataBase
         [TestInitialize]
         public void Setup()
         {
-            contexte = new EFDataContext("TcgTest");
+            mapper = new EFTournamentMapper("TcgTest");
            
         }
         [TestMethod]
-        public void testingCreationPlayersTable()
+        public void testingAddPlayer()
         {
-            contexte.Players.Add(new DbPlayer("Mininours"));
-            contexte.SaveChanges();        
+            Player p = new Player("user");
+            mapper.CreatePlayer(p);
+            
         }
     }
 }

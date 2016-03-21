@@ -108,7 +108,7 @@ namespace TcgTournament
         //button start tournament//
         private void btnStart_Click(object sender, EventArgs e)
         {
-            new Tournament().Show();
+            new TournamentView().Show();
         }
 
 

@@ -14,7 +14,7 @@ namespace TcgTournament.Controlers
         {
             tournament = t;
         }
-        public Tournament Tournament
+        public Tournament ActualTournament
         {
             get { return this.tournament; }
             set { this.tournament = value; }

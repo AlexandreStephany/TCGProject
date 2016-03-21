@@ -12,3 +12,17 @@ D:\Files\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\EntityFramework.
 D:\Files\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 D:\Files\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.dll
 D:\Files\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\TestTcgDataBase.dll.config
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\TestTcgDataBase.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\TestTcgDataBase.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\EntityFramework.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\TcgTournament.exe
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\TcgTournament.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\EntityFramework.xml
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.pdb
