@@ -7,3 +7,7 @@ C:\Users\Alexander\Desktop\TCGProject-master\GUI\bin\Debug\GUI.dll
 C:\Users\Alexander\Desktop\TCGProject-master\GUI\bin\Debug\GUI.pdb
 C:\Users\Alexander\Desktop\TCGProject-master\GUI\obj\Debug\GUI.dll
 C:\Users\Alexander\Desktop\TCGProject-master\GUI\obj\Debug\GUI.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\GUI\obj\Debug\GUI.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\GUI\obj\Debug\GUI.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\GUI\bin\Debug\GUI.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\GUI\bin\Debug\GUI.pdb

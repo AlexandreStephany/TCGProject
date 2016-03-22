@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace TcgTournament.Models
 {
-    public class Match
+    public class Match: IEquatable<Match>
     {
         private Dictionary<Player, int> result;
 
@@ -16,25 +16,41 @@ namespace TcgTournament.Models
             this.result.Add(first, 0);
             this.result.Add(second, 0);
         }
+        public int getPoints(Player p)
+        {
+            return result[p];
+        }
         public Dictionary<Player,int> Result {
             get { return this.result; }
             set { this.result = value; }
         }
         public Player GetWinner()
-        {
-            var enumerator= result.GetEnumerator();
-            var firstPlayer = enumerator.Current;
-            enumerator.MoveNext();
-            var secondPlayer = enumerator.Current;            
-            if(firstPlayer.Value>secondPlayer.Value)
+        {          
+            if(result.First().Value>result.Last().Value)
             {
-                return firstPlayer.Key;
+                return result.First().Key;
             }
             else
             {
-                return secondPlayer.Key;
+                return result.Last().Key;
             }
             
+        }
+        public bool Equals(Match other)
+        {
+            Player p1 = Player1;
+            Player p2 = Player2;
+            Player pe = other.Player1;
+            Player peb = other.Player2;
+            return (p1.Equals(pe) && p2.Equals(peb)) || (p2.Equals(pe) && p1.Equals(peb)); 
+        }
+        public Player Player1
+        {
+            get { return result.Keys.First<Player>(); }
+        }
+        public Player Player2
+        {
+            get { return result.Keys.Last<Player>(); }
         }
         public bool PlayerOnThisMatch(Player player)
         {
@@ -49,19 +65,35 @@ namespace TcgTournament.Models
 
         public Player GetLoser()
         {
-            var enumerator = result.GetEnumerator();
-            var firstPlayer = enumerator.Current;
-            enumerator.MoveNext();
-            var secondPlayer = enumerator.Current;
-            if (firstPlayer.Value < secondPlayer.Value)
+            if (result.First().Value < result.Last().Value)
             {
-                return firstPlayer.Key;
+                return result.First().Key;
             }
             else
             {
-                return secondPlayer.Key;
+                return result.Last().Key;
             }
 
+        }
+
+        public bool isFreeMatch()
+        {
+            return result.ContainsKey(new Player(""));
+        }
+
+        public Player getFreePlayer()
+        {
+            if (this.isFreeMatch())
+            {
+                if (Player1.Username == "")
+                {
+                    return Player1;
+                } else
+                {
+                    return Player2;
+                }
+            }
+            return null;
         }
 
         internal int getPlayerIndex(Player player)
@@ -82,6 +114,10 @@ namespace TcgTournament.Models
         {
             this.Result.Remove(secondP);
             this.Result.Add(firstP,0);
+        }
+        public bool isComplete()
+        {
+            return result.Values.First<int>() > 0 || result.Values.Last<int>() > 0;
         }
     }
 

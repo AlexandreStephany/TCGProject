@@ -58,11 +58,18 @@ namespace TcgTournament.EntityFramework
         public List<Player> GetAllPlayers()
         {
             List<Player> allPlayers = new List<Player>();
-            List<DbPlayer> allInDb = contexte.Players.ToList();
+            List<DbPlayer> allInDb = new List<DbPlayer>();
+            if (contexte.Players != null && contexte.Players.Count()!=0 )
+            {
+                allInDb = contexte.Players.ToList();
+            }
+            
             foreach(DbPlayer player in allInDb)
             {
                 allPlayers.Add(new Player(player.Pseudo));
             }
+            
+            allPlayers.Remove(new Player(""));
             return allPlayers;
         }
 
@@ -129,7 +136,11 @@ namespace TcgTournament.EntityFramework
                     }
                     points.Add(currentPoints);
                 }
-                SortedDictionary<DbPlayer,float > classedPlayers = new SortedDictionary<DbPlayer, float>();
+                Dictionary<DbPlayer,float > classedPlayers = new Dictionary<DbPlayer, float>();
+                for(int y=0;y<players.Count;y++)
+                {
+                    classedPlayers.Add(players[y], points[y]);
+                }
                 var items = from pair in classedPlayers
                             orderby pair.Value ascending
                             select pair;
@@ -169,7 +180,7 @@ namespace TcgTournament.EntityFramework
             {
                 List<DbTournament> tours = contexte.Tournaments.ToList();
                 DbTournament actualTour = tours[tours.Count - 1];
-
+                
                 DbPlayer player1 = contexte.Players.First<DbPlayer>(p => p.Pseudo.Equals( p1.Username));
                 DbPlayer player2 = contexte.Players.First<DbPlayer>(p => p.Pseudo.Equals( p2.Username));
                 if (results[0] > results[1])

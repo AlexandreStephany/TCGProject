@@ -144,6 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(749, 521);
             this.Controls.Add(this.lblPlayerCount);
             this.Controls.Add(this.label3);
@@ -157,6 +158,8 @@
             this.Controls.Add(this.DgvPlayers);
             this.Name = "Players";
             this.Text = "Players";
+
+            this.Load += new System.EventHandler(this.Players_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPlayersTo)).EndInit();
             this.ResumeLayout(false);

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TcgTournament.Models;
 using TcgTournament.Controlers;
+using TcgTournament.EntityFramework;
 
 namespace TcgTournament
 {
@@ -16,12 +17,13 @@ namespace TcgTournament
         [STAThread]
         static void Main()
         {
-           // Tournament tournament = new Tournament();
-           // LaunchingControler launcherControler = new LaunchingControler(tournament);
+           Tournament tournament = new Tournament();
+            EFTournamentMapper mapper = new EFTournamentMapper("TCGDataBase");
            // TournamentControler tournamentControler = new TournamentControler(tournament);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+           // mapper.CreateTournament();
+            Application.Run(new Players(new PlayersController(tournament,mapper)));
         }
     }
 }

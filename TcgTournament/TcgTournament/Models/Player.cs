@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace TcgTournament.Models
 {
     
-    public class Player: IComparable
+    public class Player: IComparable, IEquatable<Player>
     {
         private string username;
         private int victoryPoints;
@@ -18,7 +18,14 @@ namespace TcgTournament.Models
             this.resistancePoints = 0;
             this.victoryPoints = 0;
         }
-        
+        public Player()
+        {
+            this.username = "";
+            this.resistancePoints = 0;
+            this.victoryPoints = 0;
+        }
+
+
         public int CompareTo(object player2)
         {
             if (player2 != null)
@@ -28,18 +35,18 @@ namespace TcgTournament.Models
                 {
                     if (playerCompared.VictoryPoints < this.VictoryPoints)
                     {
-                        return 1;
+                        return -1;
                     } else if(playerCompared.VictoryPoints> this.VictoryPoints)
                     {
-                        return -1;
+                        return 1;
                     }
                     else
                     {
                         if (playerCompared.ResistancePoints < this.ResistancePoints)
                         {
-                            return 1; 
+                            return -1; 
                         }else if(playerCompared.ResistancePoints> this.ResistancePoints){
-                            return -1;
+                            return 1;
                         }else{
                             return 0;
                         }
@@ -55,6 +62,15 @@ namespace TcgTournament.Models
             {
                 throw new ArgumentException("Object is null");
             } 
+        }
+
+        public bool Equals(Player other)
+        {
+            return other != null && other.Username.Trim() == Username.Trim();
+        }
+        public string ToString()
+        {
+            return this.Username + " : " + "Victory points " + this.victoryPoints + " / " + " Resistance points " + this.ResistancePoints;
         }
         public string Username
         {

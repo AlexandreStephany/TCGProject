@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TcgTournament.Controlers;
+using TcgTournament.Models;
 
 namespace TcgTournament
 {
@@ -14,20 +16,36 @@ namespace TcgTournament
     {
 
         //class libary call//
-         GUI.Players settings = new GUI.Players();
+         GUI.Settings settings = new GUI.Settings();
+         GUI.Players p = new GUI.Players();
+        AddData Add = new AddData() ;
 
         //variables//
         private DataGridViewRow row;
         private int howmanyplayersleftcounter = 0;
+        private PlayersController controler;
        
 
-        public Players()
+        public Players( PlayersController control)
         {
+            
             InitializeComponent();
-            settings.datagridsettings(DgvPlayers);
-            settings.datagridsettings(DgvPlayersTo);
-            settings.testdata(DgvPlayers);
+            settings.datagridsettings(DgvPlayers,true,Color.White,243);
+            settings.datagridsettings(DgvPlayersTo,true,Color.White,243);
+            settings.datagridCollumnsAdd(DgvPlayers,"Player");
+            settings.datagridCollumnsAdd(DgvPlayersTo,"Player");
+            
             labeldata();
+            controler = control;
+            DgvPlayers.AllowUserToAddRows = false;
+            DgvPlayersTo.AllowUserToAddRows = false;
+            List<Player> players = control.Mapper.GetAllPlayers();
+            foreach(Player p in players)
+            {
+                Add.AddDataToGrid(DgvPlayers,p);
+            }
+            
+            
         }
 
 
@@ -36,7 +54,7 @@ namespace TcgTournament
         //button create player//
         private void btnCreatePlayer_Click(object sender, EventArgs e)
         {
-            new Create().Show();
+            new Create(controler.ActualTournament,controler.Mapper,this).Show();
         }
 
 
@@ -59,7 +77,7 @@ namespace TcgTournament
             }
             catch (NullReferenceException)
             {
-                settings.PleaseSelectPlayerMessage();
+                p.PleaseSelectPlayerMessage();
             }
             catch (ArgumentException ex)
             {
@@ -67,7 +85,7 @@ namespace TcgTournament
             }
             catch (InvalidOperationException)
             {
-                settings.PleaseSelectPlayerMessage();
+                p.PleaseSelectPlayerMessage();
             }
         }
 
@@ -91,7 +109,7 @@ namespace TcgTournament
             }
             catch (NullReferenceException)
             {
-                settings.PleaseSelectPlayerMessage();
+                p.PleaseSelectPlayerMessage();
             }
             catch (ArgumentException ex)
             {
@@ -99,7 +117,7 @@ namespace TcgTournament
             }
             catch (InvalidOperationException)
             {
-              settings.PleaseSelectPlayerMessage();
+              p.PleaseSelectPlayerMessage();
             }
 
         }
@@ -108,7 +126,15 @@ namespace TcgTournament
         //button start tournament//
         private void btnStart_Click(object sender, EventArgs e)
         {
-            new TournamentView().Show();
+            DataGridViewRow[] rightPlayers = new DataGridViewRow[DgvPlayersTo.Rows.Count];
+            DgvPlayersTo.Rows.CopyTo(rightPlayers, 0);
+            List<Player> players = new List<Player>();
+            foreach(DataGridViewRow row in rightPlayers)
+            {
+                players.Add(new Player(row.Cells[0].Value.ToString().Trim()));
+            }
+            new TournamentView(controler.ActualTournament,controler.Mapper,players).Show();
+
         }
 
 
@@ -158,7 +184,7 @@ namespace TcgTournament
             }
             catch (NullReferenceException)
             {
-                settings.PleaseSelectPlayerMessage();
+                p.PleaseSelectPlayerMessage();
             }
         }
 
@@ -202,6 +228,22 @@ namespace TcgTournament
                 btnAdd.Enabled = true;
                 btnStart.Enabled = false;
                 btnRemove.Enabled = true;
+            }
+        }
+
+        private void Players_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void OnFocus()
+        {
+            Add = new AddData();
+            DgvPlayers.Rows.Clear();
+            List<Player> players = controler.Mapper.GetAllPlayers();
+            foreach (Player p in players)
+            {
+                Add.AddDataToGrid(DgvPlayers, p);
             }
         }
     }

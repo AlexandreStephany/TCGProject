@@ -31,6 +31,7 @@
             this.txtCreatePlayer = new System.Windows.Forms.TextBox();
             this.btnCreatePlayer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // txtCreatePlayer
@@ -59,10 +60,15 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Player name";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // Create
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(411, 341);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCreatePlayer);
@@ -79,5 +85,6 @@
         private System.Windows.Forms.TextBox txtCreatePlayer;
         private System.Windows.Forms.Button btnCreatePlayer;
         private System.Windows.Forms.Label label1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

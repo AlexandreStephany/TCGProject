@@ -4,79 +4,116 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TcgTournament.Models;
+using TcgTournament.EntityFramework;
 
 namespace TcgTournament.Controlers
 {
     public class TournamentControler: SuperControler
     {
-        Dictionary<Player, List<Player>> playerFought;
-        public TournamentControler(Tournament tournament):base(tournament)
-        {
-            playerFought = new Dictionary<Player, List<Player>>();
-            for(int i = 0; i < ActualTournament.NumberOfPlayer(); i++)
-            {
-                playerFought.Add(ActualTournament.Participating[i], new List<Player>());
-            }
-        }
-        public void GenerateNextMatches()
-        {
-            Random RandNumber = new Random();
-            int roundNumber = ActualTournament.MatchesByRound.Count;
-            List<Player> playersByRanking = ActualTournament.SortedPlayers();
-            List<Match> CurrentMatches = new List<Match>();
-            Player tempPlayer;
-            Dictionary<Player, List<Player>>tempPlayerFought=playerFought;
-            if (ActualTournament.NumberOfPlayer() % 2 == 1)
-            {
-                do
-                {
-                    tempPlayer = playersByRanking[RandNumber.Next(ActualTournament.NumberOfPlayer() - 1)];
-                } while (playerFought[tempPlayer].Contains(null));
-                CurrentMatches.Add(new Match(tempPlayer, null));
-                tempPlayerFought[tempPlayer].Add(null);
-                playersByRanking.Remove(tempPlayer);
-            }
-            bool oneMatchIsNotValid = false;
-            List<Match> tempCurrentMatches = new List<Match>();
-            do
-            {
-                tempCurrentMatches = CurrentMatches;
-                List<Player> tempPlayersByRanking = playersByRanking;   
-                while (tempPlayersByRanking.Count != 0)
-                {
-                    tempPlayer = GetNextPlayer(tempPlayersByRanking[0], tempPlayersByRanking);
-                    if (tempPlayer == null) oneMatchIsNotValid = true;
-                    tempCurrentMatches.Add(new Match(tempPlayersByRanking[0], tempPlayer));
-                    tempPlayerFought[tempPlayer].Add(tempPlayersByRanking[0]);
-                    tempPlayerFought[tempPlayersByRanking[0]].Add(tempPlayer);
-                    tempPlayersByRanking.Remove(tempPlayer);
-                    tempPlayersByRanking.Remove(tempPlayersByRanking[0]);
-                }
+        List<Match> playedMatches;
+        List<Match> round;
 
-            }while(oneMatchIsNotValid);
-            this.playerFought = tempPlayerFought;
-            this.ActualTournament.MatchesByRound.Add(this.ActualTournament.NumberOfMatches(), tempCurrentMatches);
+        
+
+        public TournamentControler(Tournament tournament, EFTournamentMapper mapp, List<Player> players) : base(tournament, mapp)
+        {
+            PlayedMatches = new List<Match>();
+            this.ActualTournament.Participating = players;
+            Mapper.CreateTournament();
+            List<Match> round = MatchMaking.generateNextRound(players, PlayedMatches);
+            this.ActualTournament.MatchesByRound.Add(0, round);
+            this.Round = round;
         }
 
-        private Player GetNextPlayer(Player player, List<Player> playersByRanking)
+        public List<Match> PlayedMatches
         {
-            foreach(Player p in playersByRanking){
-                if(!p.Equals(player) && !playerFought[player].Contains(p))
-                {
-                    return p;
-                }
-
+            get
+            {
+                return playedMatches;
             }
-            return null;
+
+            set
+            {
+                playedMatches = value;
+            }
         }
 
+        public List<Match> Round
+        {
+            get
+            {
+                return round;
+            }
+
+            set
+            {
+                round = value;
+            }
+        }
+
+        public void ChangeMatches()
+        {
+            Random rand = new Random();
+            List<Player> players = this.ActualTournament.Participating;
+            int n = players.Count ;
+
+            while (n > 1)
+            {
+                n--;
+                int k = rand.Next(n + 1);
+                Player temp = players[k];
+                players[k] = players[n];
+                players[n] = temp;
+            }
+            this.Round = MatchMaking.generateNextRound(players, PlayedMatches);
+        }
         public void CompleteMatches()
         {
-            
+            playedMatches.AddRange(round);
+           foreach(Match m in round)
+            {
+                Mapper.SaveMatch(m);
+            }
+
+            this.ActualTournament.Participating.Sort();
+            List<Player> players = this.ActualTournament.Participating;
+            round = MatchMaking.generateNextRound(players,PlayedMatches);
         }
-        public void LaunchRound()
+        public bool allMatchesFinsihed()
+        {
+            
+            foreach(Match m in round)
+            {
+                if (!m.isComplete())
+                    return false;
+            }
+            return true;
+        }
+        public void SaveResult(List<Dictionary<Player,int>> results)
+        {
+            for(int i=0; i< round.Count; i++)
+            {
+                if (round[i].isFreeMatch())
+                {
+                    Player pl = round[i].getFreePlayer();
+                    pl.ResistancePoints += 2;
+                }
+                else {
+                    round[i].Result = results[i];
+                    Player winner = round[i].GetWinner();
+                    Player loser = round[i].GetLoser();
+                    foreach (Player p in ActualTournament.Participating)
+                    {
+                        if (p.Equals(winner)) p.VictoryPoints += round[i].getPoints(winner);
+                        else if (p.Equals(loser)) p.ResistancePoints += round[i].getPoints(loser);
+                    }
+                }
+            }
+
+        }
+        /*public void LaunchRound()
         {
             this.ActualTournament.StartCountdown();
-        }
+        }*/
     }
 }
