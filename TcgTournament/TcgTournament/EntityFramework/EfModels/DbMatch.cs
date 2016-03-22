@@ -15,6 +15,7 @@ namespace TcgTournament.EntityFramework.EfModels
         DbPlayer loser;
         int winPoints;
         int losePoints;
+        public DbMatch() { }
 
         public long IdMatch
         {

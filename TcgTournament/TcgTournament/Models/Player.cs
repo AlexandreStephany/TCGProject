@@ -11,6 +11,7 @@ namespace TcgTournament.Models
         private string username;
         private int victoryPoints;
         private int resistancePoints;
+
         public Player(string username)
         {
             this.username = username;

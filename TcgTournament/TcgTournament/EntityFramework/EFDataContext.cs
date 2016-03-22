@@ -31,11 +31,13 @@ namespace TcgTournament.EntityFramework
 
             modelBuilder.Entity<DbTournament>().ToTable("Tournaments");
             modelBuilder.Entity<DbTournament>().HasKey(t => t.IdTournament);
+            
 
             modelBuilder.Entity<DbTournament>().HasMany(t => t.Players).WithMany(p => p.Tournaments).Map(m => {
                 m.ToTable("TournamantParticipation");
                 m.MapLeftKey("Id Tournament");
                 m.MapRightKey("Pseudo");
+                
             });
         }
 

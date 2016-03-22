@@ -16,7 +16,7 @@ namespace TcgTournament.EntityFramework.EfModels
             this.Pseudo = pseudo;
             Tournaments = new List<DbTournament>();
         }
-
+        public DbPlayer() { }
         public string Pseudo
         {
             get

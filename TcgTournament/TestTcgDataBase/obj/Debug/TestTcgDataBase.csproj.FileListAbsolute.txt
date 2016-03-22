@@ -26,3 +26,5 @@ C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\E
 C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.dll
 C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\obj\Debug\TestTcgDataBase.pdb
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\GUI.dll
+C:\Users\Alex\Documents\Git\TCGProject\TcgTournament\TestTcgDataBase\bin\Debug\GUI.pdb

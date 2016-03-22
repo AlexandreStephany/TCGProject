@@ -12,6 +12,7 @@ namespace TcgTournament.EntityFramework.EfModels
         void CreatePlayer(Player player);
         void CreateTournament();
         void AddTournamentParticipation(Player player);
+        void AddAllPlayerInTournament(List<Player> p);
         void SaveMatch(Match match);
         List<Player> GetAllPlayers();
         int[] GetVictoriesDefeatVS1(Player p1, Player p2);

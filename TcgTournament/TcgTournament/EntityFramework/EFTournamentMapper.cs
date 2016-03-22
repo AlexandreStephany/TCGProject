@@ -19,12 +19,21 @@ namespace TcgTournament.EntityFramework
             this.contexte = new EFDataContext(connectionString);
         }
 
+        public void AddAllPlayerInTournament(List<Player> p)
+        {
+            foreach(Player pl in p)
+            {
+                AddTournamentParticipation(pl);
+            }
+        }
+
         public void AddTournamentParticipation(Player player)
         {
             if (player.Username != null)
             {
                 DbPlayer addPlayer = contexte.Players.First<DbPlayer>(p => p.Pseudo == player.Username);
-                DbTournament actualTour = contexte.Tournaments.Last<DbTournament>();
+                List<DbTournament> tours = contexte.Tournaments.ToList();
+                DbTournament actualTour = tours[tours.Count-1];
                 actualTour.Players.Add(addPlayer);
                 addPlayer.Tournaments.Add(actualTour); 
             }
@@ -43,6 +52,7 @@ namespace TcgTournament.EntityFramework
         public void CreateTournament()
         {
             contexte.Tournaments.Add(new DbTournament());
+            contexte.SaveChanges();
         }
 
         public List<Player> GetAllPlayers()
@@ -61,7 +71,7 @@ namespace TcgTournament.EntityFramework
             int[] vAndD = new int[2];
             DbPlayer player1 = contexte.Players.First<DbPlayer>(p => p.Pseudo == p1.Username);
             DbPlayer player2 = contexte.Players.First<DbPlayer>(p => p.Pseudo == p2.Username);
-            List<DbMatch> PlayerMatches = contexte.Matches.Where<DbMatch>(m => (m.Winner == player1 || m.Loser == player1) && (m.Winner == player2 || m.Loser == player2)).ToList();
+            List<DbMatch> PlayerMatches = contexte.Matches.Where<DbMatch>(m => (m.Winner.Pseudo == player1.Pseudo || m.Loser.Pseudo == player1.Pseudo) && (m.Winner.Pseudo == player2.Pseudo || m.Loser.Pseudo == player2.Pseudo)).ToList();
 
             foreach (DbMatch match in PlayerMatches)
             {
@@ -106,10 +116,10 @@ namespace TcgTournament.EntityFramework
             {
 
                 List<DbMatch> tourMatches = correctMatches.Where(m => m.Tournament == tour).ToList();
-                List<int> points = new List<int>();
+                List<float> points = new List<float>();
                 foreach (DbPlayer player in players)                    
                 {
-                    int currentPoints = 0;
+                    float currentPoints = 0;
                     foreach (DbMatch match in tourMatches)
                     {
                         if (match.Loser == player)
@@ -119,17 +129,17 @@ namespace TcgTournament.EntityFramework
                     }
                     points.Add(currentPoints);
                 }
-                SortedDictionary<int, DbPlayer> classedPlayers = new SortedDictionary<int, DbPlayer>();
-                for(int i = 0; i < players.Count; i++)
+                SortedDictionary<DbPlayer,float > classedPlayers = new SortedDictionary<DbPlayer, float>();
+                var items = from pair in classedPlayers
+                            orderby pair.Value ascending
+                            select pair;
+                int i = players.Count;
+                foreach (KeyValuePair<DbPlayer,float> pair in items)
                 {
-                    classedPlayers.Add(points[i], players[i]);
+                    if (pair.Key.Pseudo == player1.Pseudo) positions.Add(i);
+                    i--;
                 }
-                DbPlayer[] classed = new DbPlayer[players.Count];
-                classedPlayers.Values.CopyTo(classed,0);
-                for(int i=0; i< players.Count; i++)
-                {
-                    if (classed[i] == player1) positions.Add(i + 1);
-                }
+                
             }
             int result = 0;
             foreach(int pos in positions)
@@ -152,12 +162,16 @@ namespace TcgTournament.EntityFramework
                 match.Result.TryGetValue(player, out results[count]);
                 count++;
             }
+            Player p1 = BothPlayers[0];
+            Player p2 = BothPlayers[1];
 
             if (results[0] > 0 || results[1] > 0)
             {
-                DbTournament actualTour = contexte.Tournaments.Last<DbTournament>();
-                DbPlayer player1 = contexte.Players.First<DbPlayer>(p => p.Pseudo == BothPlayers[0].Username);
-                DbPlayer player2 = contexte.Players.First<DbPlayer>(p => p.Pseudo == BothPlayers[1].Username);
+                List<DbTournament> tours = contexte.Tournaments.ToList();
+                DbTournament actualTour = tours[tours.Count - 1];
+
+                DbPlayer player1 = contexte.Players.First<DbPlayer>(p => p.Pseudo.Equals( p1.Username));
+                DbPlayer player2 = contexte.Players.First<DbPlayer>(p => p.Pseudo.Equals( p2.Username));
                 if (results[0] > results[1])
                 {
                     contexte.Matches.Add(new DbMatch(actualTour, player1, player2,results[0],results[1]));
@@ -173,7 +187,7 @@ namespace TcgTournament.EntityFramework
         {
             int[] vAndD = new int[2];
             DbPlayer currentP = contexte.Players.First<DbPlayer>(p => p.Pseudo == player.Username);
-            List<DbMatch> PlayerMatches = contexte.Matches.Where<DbMatch>(m => m.Winner == currentP || m.Loser == currentP).ToList();
+            List<DbMatch> PlayerMatches = contexte.Matches.Where(m => (m.Winner.Pseudo.Equals( currentP.Pseudo)) ||( m.Loser.Pseudo.Equals(currentP.Pseudo))).ToList();
             foreach(DbMatch match in PlayerMatches)
             {
                 if (match.Winner == currentP)
@@ -192,5 +206,14 @@ namespace TcgTournament.EntityFramework
         {
             return contexte.Players.First<DbPlayer>(p=>p.Pseudo==player.Username).Tournaments.Count;
         }
+        public void emptyDb()
+        {
+            contexte.Matches.RemoveRange(contexte.Matches.ToList());
+            contexte.Tournaments.RemoveRange(contexte.Tournaments.ToList());
+            contexte.Players.RemoveRange(contexte.Players.ToList());
+            contexte.SaveChanges();
+            
+        }
+
     }
 }

@@ -25,6 +25,7 @@ namespace TcgTournament.EntityFramework.EfModels
                 idTournament = value;
             }
         }
+
         public bool areAllInTournament(List<DbPlayer> players)
         {
             for (int i = 0; i < players.Count; i++)

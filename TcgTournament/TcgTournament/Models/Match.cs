@@ -8,6 +8,8 @@ namespace TcgTournament.Models
     public class Match
     {
         private Dictionary<Player, int> result;
+
+        
         public Match(Player first, Player second)
         {
             this.result = new Dictionary<Player, int>();
